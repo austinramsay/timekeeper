@@ -1,0 +1,8 @@
+/* 
+    Created on : Sep 18, 2018, 1:42:30 PM
+    Author     : austinramsay
+*/
+.main-label {
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}
