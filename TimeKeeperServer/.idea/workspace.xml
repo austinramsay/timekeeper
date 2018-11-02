@@ -6,7 +6,20 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8c4a587-256f-45f2-a77c-f322e22b25e3" name="Default Changelist" comment="" />
+    <list default="true" id="b8c4a587-256f-45f2-a77c-f322e22b25e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../TimeKeeper/.idea/artifacts/TimeKeeper_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeper/.idea/artifacts/TimeKeeper_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeper/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeper/out/artifacts/TimeKeeper_jar/TimeKeeper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeper/out/artifacts/TimeKeeper_jar/TimeKeeper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeper/src/com/austinramsay/timekeeper/SyncWorker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeper/src/com/austinramsay/timekeeperobjects/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeper/src/com/austinramsay/timekeeperobjects/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TimeKeeperServer_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/TimeKeeperServer_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TimeKeeperServer_jar/TimeKeeperServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TimeKeeperServer_jar/TimeKeeperServer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/RequestWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/RequestWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +72,26 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-376986655">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="802" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="802" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="TimeKeeperServer" />
@@ -68,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="-8272">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="10" selection-start-column="10" selection-end-column="10" />
+            <state relative-caret-position="841">
+              <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,9 +125,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/OrganizationManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="493">
+              <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#449#450#0" expanded="true" />
                 <element signature="e#503#504#0" expanded="true" />
               </folding>
@@ -102,11 +136,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="516">
+              <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -120,11 +154,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7482">
-              <caret line="269" selection-start-line="269" selection-end-line="269" />
+            <state relative-caret-position="783">
+              <caret line="211" column="45" lean-forward="true" selection-start-line="211" selection-start-column="45" selection-end-line="211" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1270#1271#0" expanded="true" />
@@ -137,8 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Tracker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4321">
-              <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
+            <state relative-caret-position="841">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -149,8 +183,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeKeeperServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24244">
-              <caret line="853" column="78" selection-start-line="853" selection-start-column="78" selection-end-line="853" selection-end-column="78" />
+            <state relative-caret-position="603">
+              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
             </state>
           </provider>
         </entry>
@@ -167,8 +201,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/Organization.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2552">
-              <caret line="91" column="42" selection-start-line="91" selection-start-column="42" selection-end-line="91" selection-end-column="42" />
+            <state relative-caret-position="516">
+              <caret line="142" column="47" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,7 +226,13 @@
       <find>%n</find>
       <find>\n</find>
       <find>retrieve</find>
+      <find>println</find>
+      <find>selected</find>
+      <find>PRINTLN</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -209,11 +249,11 @@
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeKeeperServer.java" />
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/PayPeriod.java" />
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/Organization.java" />
-        <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java" />
-        <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java" />
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Tracker.java" />
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/Networker.java" />
         <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeManager.java" />
+        <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java" />
+        <option value="$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java" />
       </list>
     </option>
   </component>
@@ -222,6 +262,7 @@
     <option name="width" value="1920" />
     <option name="height" value="1036" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -271,13 +312,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
@@ -325,15 +366,15 @@
     <frame x="0" y="43" width="3840" height="1987" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4792519" visible="true" weight="0.16337954" />
-      <window_info id="Structure" order="1" sideWeight="0.5207481" side_tool="true" visible="true" weight="0.16337954" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47805735" visible="true" weight="0.16711088" />
+      <window_info id="Structure" order="1" sideWeight="0.5219427" side_tool="true" visible="true" weight="0.16711088" />
       <window_info id="Designer" order="2" />
       <window_info id="Learn" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.50905955" side_tool="true" weight="0.15778251" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" x="1636" y="721" width="784" height="352" id="Run" order="2" type="FLOATING" weight="0.32967034" />
+      <window_info anchor="bottom" x="1636" y="709" width="784" height="352" id="Run" order="2" type="FLOATING" weight="0.32967034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -407,37 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/OrganizationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/Networker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -445,32 +455,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7482">
-          <caret line="269" selection-start-line="269" selection-end-line="269" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1270#1271#0" expanded="true" />
-            <element signature="e#1303#1304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Tracker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4321">
-          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
+        <state relative-caret-position="841">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeKeeperServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24244">
-          <caret line="853" column="78" selection-start-line="853" selection-start-column="78" selection-end-line="853" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -483,18 +474,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/Organization.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2552">
-          <caret line="91" column="42" selection-start-line="91" selection-start-column="42" selection-end-line="91" selection-end-column="42" />
+        <state relative-caret-position="516">
+          <caret line="142" column="47" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/OrganizationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#449#450#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="516">
+          <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/TimeKeeperServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperserver/RequestWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8272">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="211" column="45" lean-forward="true" selection-start-line="211" selection-start-column="45" selection-end-line="211" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1270#1271#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

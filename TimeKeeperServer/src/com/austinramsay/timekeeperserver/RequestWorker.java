@@ -10,10 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.concurrent.TimeoutException;
 
 /**
  *
@@ -23,10 +19,12 @@ public class RequestWorker implements Runnable {
 
     private final Socket client;
     private final String CLIENT_IP;
+    private boolean save_flag;
     public RequestWorker(Socket client) {
 
         this.client = client;
         this.CLIENT_IP = getClientIP();
+        save_flag = false;
 
     }
     
@@ -67,6 +65,16 @@ public class RequestWorker implements Runnable {
         // Process the request accordingly
         */
         Object response = processRequest(request);
+
+
+        /*
+        // If the save flag has been marked true, something in the organization has been changed
+        // We need to update the organization in the manager to keep our changes server side
+        // For optimization purposes, it's best to do this now instead of letting our client wait for us to write to disk before getting a response
+         */
+        if (save_flag) {
+            FileManager.updateOrganizationManager();
+        }
 
 
         /*
@@ -200,9 +208,14 @@ public class RequestWorker implements Runnable {
             EmployeeList employee_list = (EmployeeList)request;
             employee_list.setEmployees(TimeKeeperServer.current_org.getEmployees());
             response = employee_list;
+
+            /*
+
+            THIS WAS FOR DEBUG PURPOSES..NOT NEEDED
+
             for (Employee sent : employee_list.getEmployees()) {
                 System.out.println("Name: " + sent.getName() + "...Clocked: " + sent.isClockedIn() + "...Hours pay period: " + sent.getPayPeriod(Calendar.getInstance()).getTotalHours() + "...Current pay period: " + sent.getPayPeriod(Calendar.getInstance()).hashCode());
-            }
+            }*/
 
             TimeKeeperServer.broadcast(String.format("Client %s: Employee list requested.", CLIENT_IP));
         }
@@ -281,8 +294,9 @@ public class RequestWorker implements Runnable {
 
             // At this point, if something has been updated for an employee...
             // Let's save the organization manager so the results are not somehow lost.
+            // Set the save flag to true, so that after we reply with our response, we know to update the organization manager before our worker closes
             if (employee_update.getUpdated())
-                FileManager.updateOrganizationManager();
+                save_flag = true;
         }
 
 

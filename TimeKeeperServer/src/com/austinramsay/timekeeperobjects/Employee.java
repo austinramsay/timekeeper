@@ -197,8 +197,6 @@ public class Employee implements Serializable {
      */
     public PayPeriod getPayPeriod(Calendar date)
     {
-        System.out.printf("Today: %d/%d/%d%n", date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), date.get(Calendar.YEAR));
-
         // Attempt to find the requested pay period with a matching start/end date
         for (PayPeriod payperiod : payperiods)
         {
@@ -207,7 +205,6 @@ public class Employee implements Serializable {
 
             // Get the pay periods month, day, and year. Determine if the date to match fits in between these days
             if (start.before(date) && end.after(date)) {
-                System.out.printf("Selected between: %d/%d/%d - %d/%d/%d%n", (start.get(Calendar.MONTH) + 1), start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.YEAR), (end.get(Calendar.MONTH) + 1), end.get(Calendar.DAY_OF_MONTH), end.get(Calendar.YEAR));
                 return payperiod;
             }
 
@@ -219,13 +216,11 @@ public class Employee implements Serializable {
 
             // Check start date compared to today
             if ((start_year == year) && (start_month == month) && (start_day == day)) {
-                System.out.printf("Selected on today: %d/%d/%d - %d/%d/%d%n", (start.get(Calendar.MONTH) + 1), start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.YEAR), (end.get(Calendar.MONTH) + 1), end.get(Calendar.DAY_OF_MONTH), end.get(Calendar.YEAR));
                 return payperiod;
             }
 
             // Check end date compared to today
             if ((end_year == year) && (end_month == month) && (end_day == day)) {
-                System.out.printf("Selected on today: %d/%d/%d - %d/%d/%d%n", (start.get(Calendar.MONTH) + 1), start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.YEAR), (end.get(Calendar.MONTH) + 1), end.get(Calendar.DAY_OF_MONTH), end.get(Calendar.YEAR));
                 return payperiod;
             }
         }

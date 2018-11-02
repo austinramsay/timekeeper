@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="TimeKeeperServer:jar">
+  <artifact type="jar" build-on-make="true" name="TimeKeeperServer:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/TimeKeeperServer_jar</output-path>
     <root id="archive" name="TimeKeeperServer.jar">
       <element id="module-output" name="TimeKeeperServer" />
