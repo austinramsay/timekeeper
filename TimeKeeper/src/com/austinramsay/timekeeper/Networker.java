@@ -24,7 +24,7 @@ public class Networker {
          */
         try {
 
-            //Socket connection = new Socket("127.0.0.1", 6263);
+            //Socket connection = new Socket("192.168.1.126", 6263);
             Socket connection = new Socket("70.93.96.32", 6263);
             return connection;
 

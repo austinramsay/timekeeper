@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -484,10 +485,12 @@ public class TimeKeeperServer {
         /*
         // Admin Menu Items
         */
-        JMenuItem editEmployeesMI = new JMenuItem("Edit Employees");
-        editEmployeesMI.addActionListener(e -> displayEmployeeModerator());
-        
-        
+        JMenuItem editEmployeesInfoMI = new JMenuItem("Moderator");
+        JMenuItem editEmployeesHoursMI = new JMenuItem("Edit Employee Hours");
+        editEmployeesInfoMI.addActionListener(e -> displayEmployeeModerator());
+        editEmployeesHoursMI.addActionListener(e -> displayEmployeeModerator());
+
+
         /*
         // Add to server menu
         */
@@ -497,7 +500,7 @@ public class TimeKeeperServer {
         /*
         // Add to admin menu
         */
-        adminMenu.add(editEmployeesMI);
+        adminMenu.add(editEmployeesInfoMI);
         
         
         /*
@@ -548,393 +551,7 @@ public class TimeKeeperServer {
      */
     private void displayEmployeeModerator() {
 
-        /*
-        // Create a window for the employee moderator
-         */
-        JDialog employee_mod = new JDialog();
-
-
-        /*
-        // Create moderator buttons (Create, Modify, Remove)
-        // Center all buttons
-        // Add button logic to end of method
-         */
-        JButton create = new JButton("Add New Employee");
-        JButton modify = new JButton("Existing Employees");
-        JButton close = new JButton("Close");
-        create.setAlignmentX(Component.CENTER_ALIGNMENT);
-        modify.setAlignmentX(Component.CENTER_ALIGNMENT);
-        close.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-        /*
-        // Create a panel to vertically stack buttons
-        // Add a 10 pixel border for padding
-         */
-        JPanel button_box = new JPanel();
-        button_box.setLayout(new BoxLayout(button_box, BoxLayout.PAGE_AXIS));
-        button_box.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button_box.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-
-        /*
-        // Add buttons to new panel
-         */
-        button_box.add(create);
-        button_box.add(Box.createRigidArea(new Dimension(0,10)));
-        button_box.add(modify);
-        button_box.add(Box.createRigidArea(new Dimension(0,10)));
-        button_box.add(close);
-
-
-        /*
-        // Add the button box to the main dialog content pane
-         */
-        employee_mod.getContentPane().add(button_box, BorderLayout.CENTER);
-
-
-        /*
-        // Pack the frame and display
-         */
-        employee_mod.pack();
-        employee_mod.setLocationRelativeTo(null);
-        employee_mod.setVisible(true);
-
-
-
-        /*
-        // Set button logic
-         */
-
-
-        // Close button logic
-        close.addActionListener(e -> employee_mod.setVisible(false));
-
-
-        // Create button logic
-        create.addActionListener(e -> {
-
-            /*
-            // Create a window with an input form for employee details
-             */
-            JDialog new_employee_window = new JDialog();
-
-
-            /*
-            // We really only need the employee's name
-            // Create a label and text field
-             */
-            JTextField name_input = new JTextField();
-
-
-            /*
-            // Create a horizontal box layout for the name input and label
-             */
-            JPanel input_panel = new JPanel();
-            input_panel.setLayout(new BoxLayout(input_panel, BoxLayout.LINE_AXIS));
-            input_panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-            /*
-            // Add the text field and label to the new input panel
-             */
-            input_panel.add(new JLabel("Employee Name:"));
-            input_panel.add(Box.createRigidArea(new Dimension(8,0)));
-            input_panel.add(name_input);
-
-
-            /*
-            // Create two buttons for submitting or closing
-             */
-            JButton submit = new JButton("Submit");
-            JButton cancel = new JButton("Cancel");
-            cancel.addActionListener(e2 -> new_employee_window.setVisible(false));
-
-
-            /*
-            // Create a horizontal box for our buttons
-             */
-            JPanel new_employee_button_box = new JPanel();
-            new_employee_button_box.setLayout(new BoxLayout(new_employee_button_box, BoxLayout.LINE_AXIS));
-            new_employee_button_box.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-            /*
-            // Add the buttons to the button box
-             */
-            new_employee_button_box.add(submit);
-            new_employee_button_box.add(Box.createRigidArea(new Dimension(8,0)));
-            new_employee_button_box.add(cancel);
-
-
-            /*
-            // Create a 'root' pane to add border padding around our two panels
-             */
-            JPanel new_employee_root = new JPanel();
-            new_employee_root.setLayout(new BoxLayout(new_employee_root, BoxLayout.PAGE_AXIS));
-            new_employee_root.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-
-            /*
-            // Add the two panels to root, and create a 10 pixel space between them
-             */
-            new_employee_root.add(input_panel);
-            new_employee_root.add(Box.createRigidArea(new Dimension(0,10)));
-            new_employee_root.add(new_employee_button_box);
-
-
-            /*
-            // Add our panels to the main content pane
-             */
-            new_employee_window.getContentPane().add(new_employee_root, BorderLayout.CENTER);
-
-
-            /*
-            // Display the new employee window
-            // Resize to 370 width to ensure the input text field is wide enough
-             */
-            new_employee_window.setPreferredSize(new Dimension(370,110));
-            new_employee_window.pack();
-            new_employee_window.setLocationRelativeTo(employee_mod);
-            new_employee_window.setVisible(true);
-
-
-            /*
-            // Submit (New Employee Submission) logic
-             */
-            submit.addActionListener(e2 -> {
-
-                /*
-                // Before we can create an employee, we need to get the next avaialble ID number for this organization
-                 */
-                int employee_id = current_org.getNextEmployeeID();
-                if (employee_id == -1)  // The getNextEmployeeID() method returns -1 if it fails to find a next avaialable ID number.
-                {
-                    JOptionPane.showMessageDialog(new_employee_window, "Failed to retrieve next available employee ID.");
-                    return;
-                }
-
-
-                /*
-                // Now that we have an ID number to use, create the employee's tracker and then the employee
-                // Use the current organizations pay periods (the organizations getPayPeriods() method returns a copied array list!
-                // Use the name_input text as the employee name
-                 */
-                Tracker new_tracker = new Tracker(employee_id);
-                Employee new_employee = new Employee(employee_id, name_input.getText(), current_org.getPayPeriods(), new_tracker);
-
-
-                /*
-                // Add to the organization using organization manager
-                 */
-                if (current_org.addEmployee(new_employee)) {
-
-                    FileManager.updateOrganizationManager();
-                    JOptionPane.showMessageDialog(new_employee_window, "New employee added. Assigned ID number: " + employee_id + ".");
-                    new_employee_window.setVisible(false);
-
-                }
-                else
-                    JOptionPane.showMessageDialog(new_employee_window, "Failed to add employee.");
-
-            });
-
-        });
-
-
-        /*
-        // Modify (Existing Employee) logic
-         */
-        modify.addActionListener(e -> {
-
-
-            /*
-            // Create new window to display a list of available employees
-             */
-            JDialog employee_editor_window = new JDialog();
-
-
-            /*
-            // Create a string array from all the employee names in the organization
-             */
-            String[] names = new String[current_org.getEmployees().size()];
-            for (int i = 0; i < current_org.getEmployees().size(); i++)
-            {
-                names[i] = current_org.getEmployeeByIndex(i).getName();
-            }
-
-
-            /*
-            // Create a JList to display all employees
-             */
-            JList<String> existing_employee_list = new JList(names);
-
-
-            /*
-            // Create a JScrollPane for the existing employee list
-             */
-            JScrollPane existing_list_scrollpane = new JScrollPane(existing_employee_list);
-            existing_employee_list.setPreferredSize(new Dimension(210,300));
-
-
-            /*
-            // Create a panel to hold the existing employee list
-             */
-            JPanel existing_list_panel = new JPanel();
-            existing_list_panel.setLayout(new FlowLayout());
-            existing_list_panel.add(existing_list_scrollpane);
-
-
-            /*
-            // Create a remove and modify button
-            // Assign cancel button to close window upon clicking
-             */
-            JButton edit = new JButton("Edit");
-            JButton remove = new JButton("Remove");
-            JButton cancel = new JButton("Cancel");
-            cancel.addActionListener(e2 -> employee_editor_window.setVisible(false));
-
-
-            /*
-            // Create a panel for the buttons
-            // Assign center alignment
-             */
-            JPanel employee_mod_button_box = new JPanel();
-            employee_mod_button_box.setLayout(new BoxLayout(employee_mod_button_box, BoxLayout.LINE_AXIS));
-            employee_mod_button_box.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-            /*
-            // Add the buttons to the button box
-            // Put an 8 pixel space between each button
-             */
-            employee_mod_button_box.add(edit);
-            employee_mod_button_box.add(Box.createRigidArea(new Dimension(8,0)));
-            employee_mod_button_box.add(remove);
-            employee_mod_button_box.add(Box.createRigidArea(new Dimension(8,0)));
-            employee_mod_button_box.add(cancel);
-
-
-            /*
-            // Create a panel to add border padding to before adding to main content pane
-            // Add a 10 pixel padding
-             */
-            JPanel employee_mod_root = new JPanel();
-            employee_mod_root.setLayout(new BoxLayout(employee_mod_root, BoxLayout.PAGE_AXIS));
-            employee_mod_root.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-
-            /*
-            // Add our built nodes to the root panel
-             */
-            employee_mod_root.add(existing_list_panel);
-            employee_mod_root.add(Box.createRigidArea(new Dimension(0,10)));
-            employee_mod_root.add(employee_mod_button_box);
-
-
-            /*
-            // Root panel is built, add to the main dialog content pane
-             */
-            employee_editor_window.getContentPane().add(employee_mod_root, BorderLayout.CENTER);
-            employee_editor_window.pack();
-            employee_editor_window.setLocationRelativeTo(employee_mod);
-            employee_editor_window.setVisible(true);
-
-
-
-            /*
-            // Set button logic for buttons inside the employee editor window
-             */
-
-            // Edit button logic
-            edit.addActionListener(e2 -> {
-
-                // Using the JList selected index, select our employee from the current organizations employee list
-                // This index will match up with the current organization's employees array list index
-                int selected_index = existing_employee_list.getSelectedIndex();
-                Employee selected = current_org.getEmployees().get(selected_index);
-
-                // Create new popup window to edit employee name
-                JDialog employee_edit_popup = new JDialog();
-
-                // Create a text field to allow editing of the employee name
-                JTextField name_input = new JTextField();
-                name_input.setText(selected.getName());
-
-                // Create two buttons to submit changes or cancel
-                JButton submit_edit = new JButton("Submit");
-                submit_edit.addActionListener(e4 -> {
-
-                    // Submit edit button logic
-                    selected.setName(name_input.getText());
-                    if (FileManager.updateOrganizationManager())
-                        JOptionPane.showMessageDialog(employee_edit_popup, "Employee name updated.");
-                    else
-                        JOptionPane.showMessageDialog(null, "Employee name updated, but the organization failed to update.");
-
-                    employee_edit_popup.setVisible(false);
-                    employee_editor_window.setVisible(false);
-
-                });
-                JButton cancel_edit = new JButton("Cancel");
-                cancel_edit.addActionListener(e3 -> employee_edit_popup.setVisible(false));
-
-                // Create a horizontal box layout for the label and name text field
-                // Add a 10 pixel buffer to the panel that contains all nodes (edit_root)
-                JPanel edit_button_box = new JPanel();
-                edit_button_box.setLayout(new BoxLayout(edit_button_box, BoxLayout.LINE_AXIS));
-
-                JPanel edit_fields = new JPanel();
-                edit_fields.setLayout(new BoxLayout(edit_fields, BoxLayout.LINE_AXIS));
-
-                JPanel edit_root = new JPanel();
-                edit_root.setLayout(new BoxLayout(edit_root, BoxLayout.PAGE_AXIS));
-                edit_root.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-                // Add nodes to corresponding panels
-                edit_button_box.add(submit_edit);
-                edit_button_box.add(Box.createRigidArea(new Dimension(10,0)));
-                edit_button_box.add(cancel_edit);
-
-                edit_fields.add(new JLabel("Employee Name:"));
-                edit_fields.add(Box.createRigidArea(new Dimension(10,0)));
-                edit_fields.add(name_input);
-
-                edit_root.add(edit_fields);
-                edit_root.add(Box.createRigidArea(new Dimension(0,10)));
-                edit_root.add(edit_button_box);
-
-                employee_edit_popup.getContentPane().add(edit_root);
-                employee_edit_popup.setPreferredSize(new Dimension(370,110));
-                employee_edit_popup.pack();
-                employee_edit_popup.setLocationRelativeTo(employee_editor_window);
-                employee_edit_popup.setVisible(true);
-
-            }); // End Edit button logic
-
-
-            // Remove button logic
-            remove.addActionListener(e2 -> {
-
-                // Remove button logic
-                // Get the employee's index
-                int selected_index = existing_employee_list.getSelectedIndex();
-                if (current_org.removeEmployee(selected_index))
-                {
-                    if (FileManager.updateOrganizationManager())
-                        JOptionPane.showMessageDialog(employee_editor_window, "Remove Succeeded.");
-                    else
-                        JOptionPane.showMessageDialog(employee_editor_window, "Remove succeeded, but the organization failed to update.");
-
-                    employee_editor_window.setVisible(false);
-                }
-                else
-                    JOptionPane.showMessageDialog(employee_editor_window, "Remove failed.");
-
-
-            });
-
-        }); // End modify button logic
+        Moderator mod = new Moderator();
 
     } // End displayEmployeeModerator() method
 
@@ -978,3 +595,235 @@ public class TimeKeeperServer {
             TimeKeeperServer.trafficLog.append("\n" + dateFormat.format(new Date()) + ": " + logMessage);
     }    
 }
+
+
+
+
+
+
+///*
+//
+//   DEPRECATED EMPLOYEE MODERATOR METHOD
+//
+//
+//        /*
+//        // Create a window for the employee moderator
+//         */
+//JDialog employee_mod = new JDialog();
+//
+//
+//    /*
+//    // Create moderator buttons (Create, Modify, Remove)
+//    // Center all buttons
+//    // Add button logic to end of method
+//     */
+//    JButton create = new JButton("Add New Employee");
+//    JButton modify = new JButton("Existing Employees");
+//    JButton close = new JButton("Close");
+//        create.setAlignmentX(Component.CENTER_ALIGNMENT);
+//                modify.setAlignmentX(Component.CENTER_ALIGNMENT);
+//                close.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//
+//        /*
+//        // Create a panel to vertically stack buttons
+//        // Add a 10 pixel border for padding
+//         */
+//                JPanel button_box = new JPanel();
+//                button_box.setLayout(new BoxLayout(button_box, BoxLayout.PAGE_AXIS));
+//                button_box.setAlignmentX(Component.CENTER_ALIGNMENT);
+//                button_box.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+//
+//
+//        /*
+//        // Add buttons to new panel
+//         */
+//                button_box.add(create);
+//                button_box.add(Box.createRigidArea(new Dimension(0,10)));
+//                button_box.add(modify);
+//                button_box.add(Box.createRigidArea(new Dimension(0,10)));
+//                button_box.add(close);
+//
+//
+//        /*
+//        // Add the button box to the main dialog content pane
+//         */
+//                employee_mod.getContentPane().add(button_box, BorderLayout.CENTER);
+//
+//
+//        /*
+//        // Pack the frame and display
+//         */
+//                employee_mod.pack();
+//                employee_mod.setLocationRelativeTo(null);
+//                employee_mod.setVisible(true);
+//
+//
+//
+//        /*
+//        // Set button logic
+//         */
+//
+//
+//                // Close button logic
+//                close.addActionListener(e -> employee_mod.setVisible(false));
+//
+
+
+
+
+
+
+//                // Create button logic
+//                create.addActionListener(e -> {
+
+//            /*
+//            // Create a window with an input form for employee details
+//             */
+//                JDialog new_employee_window = new JDialog();
+//
+//
+//            /*
+//            // We really only need the employee's name
+//            // Create a label and text field
+//             */
+//                JTextField name_input = new JTextField();
+//
+//
+//            /*
+//            // Create a horizontal box layout for the name input and label
+//             */
+//                JPanel input_panel = new JPanel();
+//                input_panel.setLayout(new BoxLayout(input_panel, BoxLayout.LINE_AXIS));
+//                input_panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//
+//            /*
+//            // Add the text field and label to the new input panel
+//             */
+//                input_panel.add(new JLabel("Employee Name:"));
+//                input_panel.add(Box.createRigidArea(new Dimension(8,0)));
+//                input_panel.add(name_input);
+//
+//
+//            /*
+//            // Create two buttons for submitting or closing
+//             */
+//                JButton submit = new JButton("Submit");
+//                JButton cancel = new JButton("Cancel");
+//                cancel.addActionListener(e2 -> new_employee_window.setVisible(false));
+//
+//
+//            /*
+//            // Create a horizontal box for our buttons
+//             */
+//                JPanel new_employee_button_box = new JPanel();
+//                new_employee_button_box.setLayout(new BoxLayout(new_employee_button_box, BoxLayout.LINE_AXIS));
+//                new_employee_button_box.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//
+//            /*
+//            // Add the buttons to the button box
+//             */
+//                new_employee_button_box.add(submit);
+//                new_employee_button_box.add(Box.createRigidArea(new Dimension(8,0)));
+//                new_employee_button_box.add(cancel);
+//
+//
+//            /*
+//            // Create a 'root' pane to add border padding around our two panels
+//             */
+//                JPanel new_employee_root = new JPanel();
+//                new_employee_root.setLayout(new BoxLayout(new_employee_root, BoxLayout.PAGE_AXIS));
+//                new_employee_root.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+//
+//
+//            /*
+//            // Add the two panels to root, and create a 10 pixel space between them
+//             */
+//                new_employee_root.add(input_panel);
+//                new_employee_root.add(Box.createRigidArea(new Dimension(0,10)));
+//                new_employee_root.add(new_employee_button_box);
+//
+//
+//            /*
+//            // Add our panels to the main content pane
+//             */
+//                new_employee_window.getContentPane().add(new_employee_root, BorderLayout.CENTER);
+//
+//
+//            /*
+//            // Display the new employee window
+//            // Resize to 370 width to ensure the input text field is wide enough
+//             */
+//                new_employee_window.setPreferredSize(new Dimension(370,110));
+//                new_employee_window.pack();
+//                new_employee_window.setLocationRelativeTo(employee_mod);
+//                new_employee_window.setVisible(true);
+//
+//
+
+
+
+
+
+//
+//        /*
+//        // Modify (Existing Employee) logic
+//         */
+//                modify.addActionListener(e -> {
+//
+//
+//            /*
+//            // Create new window to display a list of available employees
+//             */
+//                JDialog employee_editor_window = new JDialog();
+//
+//
+//            /*
+//            // Create a string array from all the employee names in the organization
+//             */
+//                String[] names = new String[current_org.getEmployees().size()];
+//                for (int i = 0; i < current_org.getEmployees().size(); i++)
+//        {
+//        names[i] = current_org.getEmployeeByIndex(i).getName();
+//        }
+//
+//
+//            /*
+//            // Create a JList to display all employees
+//             */
+//        JList<String> existing_employee_list = new JList(names);
+//
+//
+//            /*
+//            // Create a JScrollPane for the existing employee list
+//             */
+//        JScrollPane existing_list_scrollpane = new JScrollPane(existing_employee_list);
+//        existing_employee_list.setPreferredSize(new Dimension(210,300));
+//
+//
+//            /*
+//            // Create a panel to hold the existing employee list
+//             */
+//        JPanel existing_list_panel = new JPanel();
+//        existing_list_panel.setLayout(new FlowLayout());
+//        existing_list_panel.add(existing_list_scrollpane);
+//
+//
+//            /*
+//            // Create a remove and modify button
+//            // Assign cancel button to close window upon clicking
+//             */
+//        JButton edit = new JButton("Edit");
+//        JButton remove = new JButton("Remove");
+//        JButton cancel = new JButton("Cancel");
+//        cancel.addActionListener(e2 -> employee_editor_window.setVisible(false));
+
+
+//
+//        }); // End Edit button logic
+//
+//
+//
+// */

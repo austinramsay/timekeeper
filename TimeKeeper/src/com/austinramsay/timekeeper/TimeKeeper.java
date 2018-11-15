@@ -514,6 +514,7 @@ public class TimeKeeper extends Application {
         // Create buttons to close report, clear filters
          */
         Button clear = new Button("Clear Selection");
+        Button correction = new Button("Submit Correction");
         Button close = new Button("Close Report");
 
         close.setOnAction(e -> {
