@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Calendar;
 import java.util.Map;
 
-public class ActionsListRenderer extends DefaultListCellRenderer {
+public class ActionsBoxRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -24,18 +24,7 @@ public class ActionsListRenderer extends DefaultListCellRenderer {
                 entry_date.get(Calendar.HOUR_OF_DAY),
                 entry_date.get(Calendar.MINUTE));
 
-        EmployeeAction entry_action = entry.getValue();
-        String entry_action_str;
-
-        if (entry_action == EmployeeAction.CLOCKIN) {
-            entry_action_str = "Clocked In";
-        } else {
-            entry_action_str = "Clocked Out";
-        }
-
-        String full_entry = String.format("%s: %s", entry_date_str, entry_action_str);
-
-        ((JLabel)renderer).setText(String.format("%s", full_entry));
+        ((JLabel)renderer).setText(entry_date_str);
 
         return renderer;
 

@@ -1,6 +1,7 @@
 package com.austinramsay.timekeeperserver;
 
 import com.austinramsay.timekeeperobjects.*;
+import sun.awt.image.ImageWatched;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -58,11 +59,8 @@ public class Moderator extends JFrame {
                 int employee_id = list.getSelectedEmployeeId();
                 Employee selected = TimeKeeperServer.current_org.getEmployee(employee_id);
 
-                // Get the action log map from the employee tracker
-                LinkedHashMap<Calendar, EmployeeAction> actionsLog = selected.getTracker().getActionLog();
-
-                // Add the new entry to the actions log map
-                actionsLog.put(date, action);
+                // Get the action log map from the employee tracker and add the event
+                selected.getTracker().getActionLog().put(date, action);
 
                 // Refresh the actions & hours list models to reflect changes
                 updateFormLists();
@@ -95,6 +93,18 @@ public class Moderator extends JFrame {
             public void fireHourEntryAddition(Calendar date, Double hours) {
                 System.out.println("Add hour entry event fired.");
             }
+
+            @Override
+            public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions() {
+
+                // Fetch the selected employee ID
+                int employee_id = list.getSelectedEmployeeId();
+
+                // Retrieve the employee's action log and return
+                return TimeKeeperServer.current_org.getEmployee(employee_id).getTracker().getActionLog();
+            }
+
+
         });
 
 
@@ -699,20 +709,14 @@ class EmployeeLogPanel extends JPanel {
         addActionEntry.addActionListener(e -> {
 
             // Display the new action prompt
-            ActionPrompt prompt = new ActionPrompt();
+            ActionPrompt prompt = new ActionPrompt(new NewActionListener() {
+                @Override
+                public void fireNewActionSubmission(Calendar date, EmployeeAction action) {
+                    logListener.fireActionEntryAddition(date, action);
+                }
+            });
+
             prompt.showNewActionPrompt();
-
-            // Retrieve new action entry
-            Map.Entry<Calendar, EmployeeAction> newEntry = prompt.getNewEntry();
-
-            if (newEntry == null) {
-                // The user cancelled, no entry to be added
-                System.out.println("null");
-                return;
-            }
-
-            logListener.fireActionEntryAddition(newEntry.getKey(), newEntry.getValue());
-
         });
 
         removeActionEntry.addActionListener(e -> {
@@ -770,7 +774,22 @@ class EmployeeLogPanel extends JPanel {
         // Define button logic
         // Fire log listener event for controller to process upon being clicked (add/remove an hours entry)
         addHoursEntry.addActionListener(e -> {
-            logListener.fireHourEntryAddition(null, null);
+
+            HoursPrompt prompt = new HoursPrompt(new NewHoursEventListener() {
+                @Override
+                public void fireNewHoursEventSubmission() {
+                    System.out.println("Debug: Submitted!");
+                }
+
+                @Override
+                public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions() {
+                    return logListener.retrieveEmployeeActions();
+                }
+
+
+            });
+            prompt.showNewHoursPrompt();
+
         });
 
         removeHoursEntry.addActionListener(e -> {
@@ -1032,4 +1051,14 @@ interface EmployeeLogListener {
     public void fireActionEntryAddition(Calendar date, EmployeeAction action);
     public void fireHourEntryRemoval(Calendar date, Double hours);
     public void fireHourEntryAddition(Calendar date, Double hours);
+    public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions();
+}
+
+interface NewActionListener {
+    public void fireNewActionSubmission(Calendar date, EmployeeAction action);
+}
+
+interface NewHoursEventListener {
+    public void fireNewHoursEventSubmission();
+    public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions();
 }
