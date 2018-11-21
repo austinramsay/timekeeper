@@ -16,13 +16,20 @@ public class ActionsBoxRenderer extends DefaultListCellRenderer {
 
         Map.Entry<Calendar, EmployeeAction> entry = (Map.Entry<Calendar, EmployeeAction>)value;
 
+        if (entry == null) {
+            return renderer;
+        }
+
         Calendar entry_date = entry.getKey();
 
-        String entry_date_str = String.format("%d/%d %d:%d",
+        // Get rendered string for minutes (ex. turn 5:5pm -> 5:05pm)
+        String mins = TimeRenderer.renderMinutes(entry_date.get(Calendar.MINUTE));
+
+        String entry_date_str = String.format("%d/%d %d:%s",
                 (entry_date.get(Calendar.MONTH) + 1),
                 entry_date.get(Calendar.DAY_OF_MONTH),
-                entry_date.get(Calendar.HOUR_OF_DAY),
-                entry_date.get(Calendar.MINUTE));
+                (entry_date.get(Calendar.HOUR) == 0 ? 12 : (entry_date.get(Calendar.HOUR)) ),
+                mins);
 
         ((JLabel)renderer).setText(entry_date_str);
 

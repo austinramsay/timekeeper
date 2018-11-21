@@ -1,6 +1,7 @@
 package com.austinramsay.timekeeperserver;
 
 import com.austinramsay.timekeeperobjects.EmployeeAction;
+import jdk.nashorn.internal.scripts.JO;
 import sun.awt.image.ImageWatched;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.AbstractMap;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -52,7 +54,7 @@ public class HoursPrompt {
         availableActions = new JComboBox<>();
         availableActions.setRenderer(new ActionsBoxRenderer());
         availableActions.setModel(actionModel);
-        populateAvailableActions();
+        populateAvailableActions();  // Populate actions with employee action log (filtered with only clock-in events), this is requested from the requestListener
 
         // Define auto-create checkbox
         JCheckBox autoCreate = new JCheckBox("Auto-create Clock Out Event");
@@ -143,12 +145,61 @@ public class HoursPrompt {
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer selectedMonth = ((Integer)month.getSelectedItem() - 1); // Calendar month goes from 0-11 (0 for January)
-                Integer selectedDay = (Integer)day.getSelectedItem();
 
-                System.out.println("Debug: Fire hours clocked event.");
+                // Check if auto-create clock-out is selected
+                if (autoCreate.isSelected()) {
+
+                    // Create a clock-out event based off clock-in event selection as well as an hours entry
+
+                    // Determine amount of hours to clock from input field information (attempt to cast double from string input)
+                    Double hoursClocked;
+                    Double millisDbl;
+                    try {
+                        // Cast input field text as a double
+                        hoursClocked = Double.valueOf(amountInput.getText());
+
+                        // Convert hours to milliseconds (1 hour = 3,600,000 milliseconds)
+                        millisDbl = hoursClocked * 3600000;
+
+                    } catch (NullPointerException npe) {
+                        JOptionPane.showMessageDialog(prompt, "Please input a numberic value in the hours input field.");
+                        return;
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(prompt, "Numeric decimal not found in hours input field.");
+                        return;
+                    }
+
+                    // Determine clock-in time based off available action that is selected
+                    Calendar clockInTime;
+                    try {
+                        clockInTime = (Calendar) ((Map.Entry<Calendar, EmployeeAction>) availableActions.getSelectedItem()).getKey();
+                    } catch (NullPointerException npe) {
+                        JOptionPane.showMessageDialog(prompt, "No corresponding clock-in time selected.");
+                        return;
+                    }
+
+                    // Determine clock-out time by offsetting clock-in time with the determined hours clocked numeric value
+                    Calendar clockOutTime = Calendar.getInstance();
+                    clockOutTime.set(clockInTime.get(Calendar.YEAR), clockInTime.get(Calendar.MONTH), clockInTime.get(Calendar.DAY_OF_MONTH), clockInTime.get(Calendar.HOUR_OF_DAY), clockInTime.get(Calendar.MINUTE));
+
+                    // Offset clock-out time with clock-in time
+                    Integer millis = millisDbl.intValue();
+                    clockOutTime.add(Calendar.MILLISECOND, millis);
+
+                    // Relay new action entry and hours amount to the request listener
+                    requestListener.fireNewHoursEventSubmission(hoursClocked, clockOutTime);
+
+                } else {
+
+                    // Create manually selected time values clock-out event as well as an hours entry
+                    Integer selectedMonth = ((Integer)month.getSelectedItem() - 1); // Calendar month goes from 0-11 (0 for January)
+                    Integer selectedDay = (Integer)day.getSelectedItem();
+
+                }
 
                 prompt.setVisible(false);
+
+                // requestListener.fireEvent
             }
         });
 
@@ -166,6 +217,9 @@ public class HoursPrompt {
             setAutoCreate(autoCreate.isSelected());
 
         });
+
+        // Set default to auto-create a clock-out event
+        autoCreate.setSelected(true);
 
         // Add elements to prompt frame
         prompt.add(gridPanel, BorderLayout.CENTER);
@@ -191,13 +245,12 @@ public class HoursPrompt {
         year.setSelectedItem(todaysYear);
         hour.setSelectedItem(hourNow);
         minute.setSelectedItem(minuteNow);
-
-        setAutoCreate(false);
     }
+
 
     private void populateAvailableActions() {
 
-        // Retrieve employee available actions
+        // Retrieve employee available actions (only clock-in events between the dates of the selected pay period are returned)
         LinkedHashMap<Calendar, EmployeeAction> actions = requestListener.retrieveEmployeeActions();
 
         // Clear current model data
@@ -213,6 +266,7 @@ public class HoursPrompt {
             actionModel.addElement(entry);
         }
     }
+
 
     private void setAutoCreate(boolean enabled) {
 

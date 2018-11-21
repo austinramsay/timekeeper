@@ -8,17 +8,11 @@ import java.util.Date;
 public class FileManager {
 
 
-
-
-
     /*
     // Declare final path values used for necessary stored server files
      */
     private static final String SERVER_DIR = System.getProperty("user.home");
     private static final File ORGANIZATION_MANAGER_FILE = new File(SERVER_DIR + "/.orgs.timekeeper");
-
-
-
 
 
     /**
@@ -45,7 +39,7 @@ public class FileManager {
             organizationsExist.append("Not found.");
 
             if (createOrganizationManagerFile(FileManager.ORGANIZATION_MANAGER_FILE))
-                organizationsExist.append("\nNew organizations file created.");
+                organizationsExist.append("\nNew organizations manager created.");
         }
 
 
@@ -102,9 +96,6 @@ public class FileManager {
         // Failed to get the Organization Manager
         return false;
     }
-
-
-
 
 
     /**

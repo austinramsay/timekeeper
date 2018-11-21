@@ -1,6 +1,7 @@
 package com.austinramsay.timekeeperserver;
 
 import com.austinramsay.timekeeperobjects.EmployeeAction;
+import com.sun.deploy.cache.CacheEntry;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -51,7 +52,7 @@ public class ActionPrompt {
         }
 
         // Add 2000-2030 for year values
-        for (int c = 2000; c <= 2030; c++) {
+        for (int c = 2018; c <= 2030; c++) {
             year.addItem(Integer.valueOf(c));
         }
 
@@ -119,11 +120,14 @@ public class ActionPrompt {
                 Integer selectedMonth = ((Integer)month.getSelectedItem() - 1); // Calendar month goes from 0-11 (0 for January)
                 Integer selectedDay = (Integer)day.getSelectedItem();
                 Integer selectedYear = (Integer)year.getSelectedItem();
-                Integer selectedHour = ((Integer)hour.getSelectedItem() - 1);  // Calendar hour goes from 0-11 (0 for noon/midnight)
+//                Integer selectedHour = ((Integer)hour.getSelectedItem() - 1);  // Calendar hour goes from 0-11 (0 for noon/midnight)
+                Integer selectedHour = ((Integer)hour.getSelectedItem());  // Calendar hour goes from 0-11 (0 for noon/midnight)
                 Integer selectedMin = (Integer)minute.getSelectedItem();
 
                 Calendar actionDate = Calendar.getInstance();
-                actionDate.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMin);
+                actionDate.set(selectedYear, selectedMonth, selectedDay);
+                actionDate.set(Calendar.HOUR, selectedHour);
+                actionDate.set(Calendar.MINUTE, selectedMin);
 
                 EmployeeAction actionType = (type.getSelectedIndex() == 0) ? EmployeeAction.CLOCKIN : EmployeeAction.CLOCKOUT;
 

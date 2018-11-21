@@ -90,6 +90,11 @@ public class Employee implements Serializable {
 
     /**
      * Set the clocked in variable for the employee
+     * If clocking in, adds a tracker clock-in event and returns zero.
+     * If clocking out, determines hours clocked by comparing time now versus time of last event.
+     * Adds hours amount to the tracker, as well as a clock-out event.
+     * Fetches current pay period, and adds calculated hours in.
+     * Warning: Modifying an employee's hours while they are clocked in will affect calculation of clock out time!
      * @param clocked_in True if clocked in; False if not clocked in
      * @return The number of hours recorded. Returns zero if clocking in.
      */

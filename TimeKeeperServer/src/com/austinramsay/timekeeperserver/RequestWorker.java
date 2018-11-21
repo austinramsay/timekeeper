@@ -209,14 +209,6 @@ public class RequestWorker implements Runnable {
             employee_list.setEmployees(TimeKeeperServer.current_org.getEmployees());
             response = employee_list;
 
-            /*
-
-            THIS WAS FOR DEBUG PURPOSES..NOT NEEDED
-
-            for (Employee sent : employee_list.getEmployees()) {
-                System.out.println("Name: " + sent.getName() + "...Clocked: " + sent.isClockedIn() + "...Hours pay period: " + sent.getPayPeriod(Calendar.getInstance()).getTotalHours() + "...Current pay period: " + sent.getPayPeriod(Calendar.getInstance()).hashCode());
-            }*/
-
             TimeKeeperServer.broadcast(String.format("Client %s: Employee list requested.", CLIENT_IP));
         }
 

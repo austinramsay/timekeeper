@@ -122,6 +122,15 @@ public class PayPeriod implements Serializable {
 
 
     /**
+     * Hours modification. Remove defined amount of hours from this pay period.
+     * @param hours the amount of total_hours to be subtracted
+     */
+    public void subtractHours(double hours) { this.total_hours -= hours; }
+
+
+
+
+    /**
      * Define a specific amount of total_hours for this pay period.
      * Useful if an employee failed to clock in/out and time needs to be changed.
      * @param total_hours the amount of total_hours to set this pay period to

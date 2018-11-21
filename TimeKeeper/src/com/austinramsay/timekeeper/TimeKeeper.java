@@ -611,15 +611,18 @@ public class TimeKeeper extends Application {
             // Get the entry date for the action
             Calendar entry_date = entry.getKey();
 
+            // Get rendered string for minutes (ex. turn 5:5pm -> 5:05pm)
+            String mins = TimeRenderer.renderMinutes(entry_date.get(Calendar.MINUTE));
+
             // If the start or end date argumented is null, include all entries
             // If the entry date is between the requested start/end dates, include the entry
             if ( ((start == null) && (end == null))  ||  (betweenDate(start, end, entry_date))) {
-                String entry_date_str = String.format("%d/%d/%d %d:%d",
+                String entry_date_str = String.format("%d/%d/%d %d:%s",
                         (entry_date.get(Calendar.MONTH) + 1),
                         entry_date.get(Calendar.DAY_OF_MONTH),
                         entry_date.get(Calendar.YEAR),
-                        entry_date.get(Calendar.HOUR_OF_DAY),
-                        entry_date.get(Calendar.MINUTE));
+                        entry_date.get(Calendar.HOUR) == 0 ? 12 : (entry_date.get(Calendar.HOUR)),
+                mins);
 
                 EmployeeAction entry_action = entry.getValue();
                 String entry_action_str;
@@ -667,7 +670,7 @@ public class TimeKeeper extends Application {
                         (entry_date.get(Calendar.MONTH) + 1),
                         entry_date.get(Calendar.DAY_OF_MONTH),
                         entry_date.get(Calendar.YEAR),
-                        entry_date.get(Calendar.HOUR_OF_DAY),
+                        entry_date.get(Calendar.HOUR) == 0 ? 12 : (entry_date.get(Calendar.HOUR)),
                         entry_date.get(Calendar.MINUTE));
 
                 Double entry_hours = round(entry.getValue());
@@ -791,6 +794,10 @@ public class TimeKeeper extends Application {
      */
     private void updateEmployeeList(ArrayList<Employee> employee_list) {
 
+        if (employee_list == null) {
+            return;
+        }
+
         /*
         // Remember the currently selected employee
          */
@@ -897,7 +904,7 @@ public class TimeKeeper extends Application {
 
         // Check if the date matches exactly the start date
         if ((start.get(Calendar.YEAR) == compare.get(Calendar.YEAR)) && (start.get(Calendar.MONTH) == compare.get(Calendar.MONTH)) && (start.get(Calendar.DAY_OF_MONTH) == compare.get(Calendar.DAY_OF_MONTH)))
-            return true;
+            return true; StringBuilder builder = new StringBuilder();
 
         // Check if the date matches exactly the end date
         if ((end.get(Calendar.YEAR) == compare.get(Calendar.YEAR)) && (end.get(Calendar.MONTH) == compare.get(Calendar.MONTH)) && (end.get(Calendar.DAY_OF_MONTH) == compare.get(Calendar.DAY_OF_MONTH)))

@@ -1,6 +1,8 @@
 package com.austinramsay.timekeeperserver;
 
 import com.austinramsay.timekeeperobjects.*;
+import javafx.scene.control.SelectionMode;
+import jdk.nashorn.internal.scripts.JO;
 import sun.awt.image.ImageWatched;
 
 import javax.swing.*;
@@ -59,6 +61,10 @@ public class Moderator extends JFrame {
                 int employee_id = list.getSelectedEmployeeId();
                 Employee selected = TimeKeeperServer.current_org.getEmployee(employee_id);
 
+                if (selected == null) {
+                    return;
+                }
+
                 // Get the action log map from the employee tracker and add the event
                 selected.getTracker().getActionLog().put(date, action);
 
@@ -81,17 +87,45 @@ public class Moderator extends JFrame {
 
                 // Verify removed, if not warn the user
                 if (!removed) {
-                    JOptionPane.showMessageDialog(null, "Failed to remove the hours entry from the tracker.");
+                    JOptionPane.showMessageDialog(null, "Failed to remove the hours entry from the tracker. Hours not affected.");
+                    return;
+                }
+
+                // Get the matching pay period and subtract hours
+                try {
+                    selected.getPayPeriod(date).subtractHours(hours);
+                } catch(NullPointerException npe) {
+                    JOptionPane.showMessageDialog(null, "Failed to modify pay period hours. However, the tracker hours were updated.");
                     return;
                 }
 
                 // Refresh the actions & hours list models to reflect changes
                 updateFormLists();
+                updateForm(selected, false);
             }
 
             @Override
             public void fireHourEntryAddition(Calendar date, Double hours) {
-                System.out.println("Add hour entry event fired.");
+
+                // Fetch the selected employee
+                int employee_id = list.getSelectedEmployeeId();
+                Employee selected = TimeKeeperServer.current_org.getEmployee(employee_id);
+
+                // Get the hours log map from the employee tracker & add new hours
+                LinkedHashMap<Calendar, Double> hoursLog = selected.getTracker().getHoursLog();
+                hoursLog.put(date, hours);
+
+                // Get the matching pay period and add hours
+                try {
+                    selected.getPayPeriod(date).addHours(hours);
+                } catch(NullPointerException npe) {
+                    JOptionPane.showMessageDialog(null, "Failed to modify pay period hours. However, the tracker hours were updated.");
+                    return;
+                }
+
+                // Refresh the actions & hours list models to reflect changes
+                updateFormLists();
+                updateForm(selected, false);
             }
 
             @Override
@@ -100,8 +134,19 @@ public class Moderator extends JFrame {
                 // Fetch the selected employee ID
                 int employee_id = list.getSelectedEmployeeId();
 
-                // Retrieve the employee's action log and return
-                return TimeKeeperServer.current_org.getEmployee(employee_id).getTracker().getActionLog();
+                // Determine selected pay period dates to prepare for retrieving corresponding events (if selected)
+                PayPeriod selected = form.getSelectedPayPeriod();
+
+                if (selected == null) {
+                    return null;
+                }
+
+                Calendar payPeriodStart = selected.getStartDate();
+                Calendar payPeriodEnd = selected.getEndDate();
+
+                // We want to get a filtered list of action clock in/out events between given pay period time frame
+                // Supply the dates, and retrieve the selected employee's action log from tracker to supply for filtering
+                return form.getClockInEvents(payPeriodStart, payPeriodEnd, TimeKeeperServer.current_org.getEmployee(employee_id).getTracker().getActionLog()); // need the selected pay period dates for arguments here
             }
 
 
@@ -112,7 +157,13 @@ public class Moderator extends JFrame {
         list = new ModeratorList(new EmployeeChangeListener() {
             @Override
             public void fireEmployeeChangedEvent(EmployeeChangeEvent e) {
-                updateForm(e.getSelected());
+                updateForm(e.getSelected(), true);
+                if (e.getSelected() == null) {
+                    form.setAddActionButton(false);
+                } else {
+                    form.setAddActionButton(true);
+                }
+
             }
         });
 
@@ -173,7 +224,7 @@ public class Moderator extends JFrame {
 
                 String updated_name = JOptionPane.showInputDialog(null, "Edit Employee Name:", current_name);
 
-                if (updated_name.equals(current_name)) {
+                if (updated_name == null || updated_name.equals(current_name)) {
                     // The name wasn't changed, cancel edit.
                     return;
                 } else {
@@ -235,8 +286,8 @@ public class Moderator extends JFrame {
      * Set form variables corresponding to newly selected employee.
      * @param selected employee selected to set 
      */
-    private void updateForm(Employee selected) {
-        form.update(selected);
+    private void updateForm(Employee selected, boolean refreshPayPeriods) {
+        form.update(selected, refreshPayPeriods);
     }
 
 
@@ -291,6 +342,14 @@ class ModeratorList extends JPanel {
                 // When removing an employee, the list selection may become null if that was the only employee. Verify not null before trying to fire an update
                 EmployeeChangeEvent update = new EmployeeChangeEvent(this, selected);
                 selectionListener.fireEmployeeChangedEvent(update);
+
+                if (selected != null) {
+                    // Check if employee is clocked in
+                    // Display warning if they are - as calculations for hours are based off the last tracker event, adding/removing entries may cause problems
+                    if (selected.isClockedIn()) {
+                        JOptionPane.showMessageDialog(null, "Warning: This employee is clocked in. Making changes now may cause calculation issues when employee clocks out.");
+                    }
+                }
             }
 
         });
@@ -312,12 +371,6 @@ class ModeratorList extends JPanel {
         add(listPane, BorderLayout.CENTER);
 
         setBorder(BorderFactory.createEmptyBorder(5,5,0,0));
-
-        // Select first employee in the list
-        employee_list.clearSelection();
-        if (employee_list.getModel().getSize() >= 0)
-            employee_list.setSelectedIndex(0);
-
     } // End constructor
 
 
@@ -340,9 +393,6 @@ class ModeratorList extends JPanel {
         for (Employee employee : employees) {
             empModel.addElement(employee);
         }
-
-        // Clear the employee list after completion
-        employees = null;
     }
 
 
@@ -485,9 +535,10 @@ class ModeratorForm extends JPanel {
     /**
      * Update dynamic labels contained in the employee information panel of the Moderator.
      * These labels are updated dependant upon information obtained from the argument Employee.
+     * Displays warning that modifying hours may not be ideal when an employee is clocked-in.
      * @param selected the selected employee to obtain information from
      */
-    public void update(Employee selected) {
+    public void update(Employee selected, boolean refreshPayPeriods) {
         if (selected != null) {
             // Set labels corresponding to selected employee
             employeeNameLabel.setText(selected.getName());
@@ -497,7 +548,14 @@ class ModeratorForm extends JPanel {
             employeeTodayHoursLabel.setText(Double.toString(round(selected.getTracker().getHours(TimeInterval.TODAY))) + " Hours");           // Get rounded daily hours
 
             // Set model data in log panel to correspond with selected employee
-            logPanel.setPayPeriods(selected.getPayPeriods());
+
+            // Sometimes may not be necessary to refresh pay periods list.
+            // Ex. after adding a new hours entry, we need to update the employee labels to reflect new hours calculations
+            // But pay periods would have not changed from this..
+            // By avoiding the refresh, the user can keep their selected pay period instead of resetting the list model
+            if (refreshPayPeriods) {
+                logPanel.setPayPeriods(selected.getPayPeriods());
+            }
             logPanel.setActions(selected.getTracker().getActionLog());
             logPanel.setHours(selected.getTracker().getHoursLog());
         } else {
@@ -516,11 +574,46 @@ class ModeratorForm extends JPanel {
 
 
     /**
+     * This is a connection method between the form and the log panel
+     * @return the selected pay period in the log panel
+     */
+    public PayPeriod getSelectedPayPeriod() {
+        return logPanel.getSelectedPayPeriod();
+    }
+
+
+    /**
+     * This is a connection method between the form and the log panel
+     * Given a pay period start date, end date, and the full actions log of an employee.. return a filtered list of action events where the employee clocked in.
+     * This is useful for the new hours submission prompt, where a user is given a list of clock-in events to correspond with the hours they are submitting.
+     * @param payPeriodStart the pay period start date
+     * @param payPeriodEnd the pay period end date
+     * @param actions the full action log of the employee to be filtered
+     * @return clock-in events falling between given pay period dates
+     */
+    public LinkedHashMap<Calendar, EmployeeAction> getClockInEvents(Calendar payPeriodStart, Calendar payPeriodEnd, LinkedHashMap<Calendar, EmployeeAction> actions) {
+        // Reuse the log panel's filtered action entries method
+        // Note argument: ActionType.CLOCKIN  --  ONLY CLOCK IN EVENTS RETURNED
+        return logPanel.getFilteredActionEntries(payPeriodStart, payPeriodEnd, ActionType.CLOCKIN, actions);
+    }
+
+
+    /**
+     * This is a connection method between the form and the log panel
      * Calls refreshModels() in the Moderator log panel
      * Dependant upon selected pay period, updates the actions and hours lists.
      */
     public void refreshModels() {
         logPanel.refreshModels();
+    }
+
+
+    /**
+     * This is a connecting method to access the log panel's add action button.
+     * Enables/disables 'Add' button under 'Action Events' column dependant upon if an employee is selected or not
+     */
+    public void setAddActionButton(boolean enabled) {
+        logPanel.setAddActionButton(enabled);
     }
 
 
@@ -645,11 +738,24 @@ class EmployeeLogPanel extends JPanel {
 
         // Build pay periods list and define renderer
         payPeriodsList = new JList(ppModel);
+        payPeriodsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         payPeriodsList.setCellRenderer(ppRenderer);
         payPeriodsList.addListSelectionListener(e -> {
-            // Pay period was selected, populate action entries and hour entries lists
+
+            // Pay period was selected, populate action entries and hour entries lists - enable/disable buttons depending on if a selection is chosen
+
+            // Because hours entries functions are dependent upon whether a pay period is selected or not, set buttons to disabled unless a pay period is selected
+            if (payPeriodsList.isSelectionEmpty()) {
+                addHoursEntry.setEnabled(false);
+            } else {
+                addHoursEntry.setEnabled(true);
+            }
+
             refreshModels();
         });
+
+        // Set default values of hours entry buttons to disabled until a pay period is selected
+        addHoursEntry.setEnabled(false);
 
         // Add list to scroll pane and limit size
         JScrollPane payPeriodsPane = new JScrollPane(payPeriodsList);
@@ -682,7 +788,26 @@ class EmployeeLogPanel extends JPanel {
 
         // Build actions list and define renderer
         actionsList = new JList(actionModel);
+        actionsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         actionsList.setCellRenderer(actionsRenderer);
+        actionsList.addListSelectionListener(e -> {
+
+            // Action event was selected/deselected
+
+            // If selection is empty, disable the removal button - else set enabled
+            if (actionsList.isSelectionEmpty()) {
+                removeActionEntry.setEnabled(false);
+            } else {
+                removeActionEntry.setEnabled(true);
+            }
+
+        });
+
+        // Set default add action entry button to disabled until an employee is selected
+        addActionEntry.setEnabled(false);
+
+        // Set default remove action entry button to disabled until an entry is selected
+        removeActionEntry.setEnabled(false);
 
         // Add list to scroll pane and limit size
         JScrollPane actionsListPane = new JScrollPane(actionsList);
@@ -708,7 +833,7 @@ class EmployeeLogPanel extends JPanel {
         // Fire log listener event for controller to process upon being clicked (add/remove an action entry)
         addActionEntry.addActionListener(e -> {
 
-            // Display the new action prompt
+            // Prepare the prompt with a listener to handle a new entry submission
             ActionPrompt prompt = new ActionPrompt(new NewActionListener() {
                 @Override
                 public void fireNewActionSubmission(Calendar date, EmployeeAction action) {
@@ -716,12 +841,16 @@ class EmployeeLogPanel extends JPanel {
                 }
             });
 
+            // Display the new action entry prompt
             prompt.showNewActionPrompt();
         });
 
         removeActionEntry.addActionListener(e -> {
+
+            // Get the selected action entry to remove
             Map.Entry<Calendar, EmployeeAction> selectedAction = (Map.Entry<Calendar, EmployeeAction>)actionsList.getSelectedValue();
 
+            // If none is selected, return
             if (selectedAction == null) {
                 return;
             }
@@ -749,7 +878,23 @@ class EmployeeLogPanel extends JPanel {
 
         // Build hours list and define renderer
         hoursList = new JList(hoursModel);
+        hoursList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         hoursList.setCellRenderer(hoursRenderer);
+        hoursList.addListSelectionListener(e -> {
+
+            // Action event was selected/deselected
+
+            // If selection is empty, disable the removal button - else set enabled
+            if (hoursList.isSelectionEmpty()) {
+                removeHoursEntry.setEnabled(false);
+            } else {
+                removeHoursEntry.setEnabled(true);
+            }
+
+        });
+
+        // Set default remove hours entry button to disabled until an entry is selected
+        removeHoursEntry.setEnabled(false);
 
         // Add to scroll pane and limit size
         JScrollPane hoursListPane = new JScrollPane(hoursList);
@@ -775,19 +920,25 @@ class EmployeeLogPanel extends JPanel {
         // Fire log listener event for controller to process upon being clicked (add/remove an hours entry)
         addHoursEntry.addActionListener(e -> {
 
+            if (getSelectedPayPeriod() == null) {
+                JOptionPane.showMessageDialog(null, "Please select a pay period.");
+                return;
+            }
+
             HoursPrompt prompt = new HoursPrompt(new NewHoursEventListener() {
                 @Override
-                public void fireNewHoursEventSubmission() {
-                    System.out.println("Debug: Submitted!");
+                public void fireNewHoursEventSubmission(Double hoursClocked, Calendar clockOutTime) {
+                    logListener.fireActionEntryAddition(clockOutTime, EmployeeAction.CLOCKOUT);
+                    logListener.fireHourEntryAddition(clockOutTime, hoursClocked);
                 }
 
                 @Override
                 public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions() {
                     return logListener.retrieveEmployeeActions();
                 }
-
-
             });
+
+            // Display the new hours entry prompt
             prompt.showNewHoursPrompt();
 
         });
@@ -810,6 +961,14 @@ class EmployeeLogPanel extends JPanel {
 
 
     /**
+     * Enables/disables 'Add' button under 'Action Events' column dependant upon if an employee is selected or not
+     */
+    public void setAddActionButton(boolean enabled) {
+        addActionEntry.setEnabled(enabled);
+    }
+
+
+    /**
      * Set each time a new employee selected event is fired.
      * @param actions the selected employee's action entry map
      */
@@ -824,6 +983,14 @@ class EmployeeLogPanel extends JPanel {
      */
     public void setHours(LinkedHashMap<Calendar, Double> hours) {
         this.hours = hours;
+    }
+
+
+    /**
+     * @return the selected pay period in the log panel
+     */
+    public PayPeriod getSelectedPayPeriod() {
+        return (PayPeriod)payPeriodsList.getSelectedValue();
     }
 
 
@@ -908,7 +1075,7 @@ class EmployeeLogPanel extends JPanel {
         LinkedHashMap<Calendar, Double> filteredHoursMap = getFilteredHoursEntries(selected.getStartDate(), selected.getEndDate(), hours);
 
         // Filter action entries that fit between the selected pay period start & end dates
-        LinkedHashMap<Calendar, EmployeeAction> filteredActionsMap = getFilteredActionEntries(selected.getStartDate(), selected.getEndDate(), actions);
+        LinkedHashMap<Calendar, EmployeeAction> filteredActionsMap = getFilteredActionEntries(selected.getStartDate(), selected.getEndDate(), ActionType.ALL, actions);
 
         // Update list model information with filtered results
         updateHoursModel(filteredHoursMap);
@@ -951,7 +1118,7 @@ class EmployeeLogPanel extends JPanel {
      * @param actions the action entry map of the employee
      * @return an filtered map of corresponding action events contained between specified pay period dates
      */
-    private LinkedHashMap<Calendar, EmployeeAction> getFilteredActionEntries(Calendar payPeriodStart, Calendar payPeriodEnd, LinkedHashMap<Calendar, EmployeeAction> actions) {
+    public LinkedHashMap<Calendar, EmployeeAction> getFilteredActionEntries(Calendar payPeriodStart, Calendar payPeriodEnd, ActionType type, LinkedHashMap<Calendar, EmployeeAction> actions) {
 
         // Initialize a map to add entries that fit between specified dates to
         LinkedHashMap<Calendar, EmployeeAction> filteredEntries = new LinkedHashMap<>();
@@ -964,7 +1131,22 @@ class EmployeeLogPanel extends JPanel {
 
             // If the entry date is between the requested start/end dates, include the entry
             if (betweenDate(payPeriodStart, payPeriodEnd, entry_date)) {
-                filteredEntries.put(entry.getKey(), entry.getValue());
+
+                // The entries are between the requested date, compare against the type requested now
+                if (type == ActionType.ALL) {
+                    filteredEntries.put(entry.getKey(), entry.getValue());
+
+                } else if (type == ActionType.CLOCKIN) {
+                    // Type requested is clocking in events, compare against and add if correct
+                    if (entry.getValue() == EmployeeAction.CLOCKIN)
+                        filteredEntries.put(entry.getKey(), entry.getValue());
+
+                } else if (type == ActionType.CLOCKOUT) {
+                    // Type requested is clocking out events, compare against and add if correct
+                    if (entry.getValue() == EmployeeAction.CLOCKOUT)
+                        filteredEntries.put(entry.getKey(), entry.getValue());
+                }
+
             }
 
         } // End action entry search 'for' loop
@@ -1033,7 +1215,6 @@ class EmployeeListChangeEvent extends EventObject {
 
 }
 
-
 // Listener interface definitions
 
 interface EmployeeChangeListener {
@@ -1059,6 +1240,13 @@ interface NewActionListener {
 }
 
 interface NewHoursEventListener {
-    public void fireNewHoursEventSubmission();
+    public void fireNewHoursEventSubmission(Double hoursClocked, Calendar clockOutTime);
     public LinkedHashMap<Calendar, EmployeeAction> retrieveEmployeeActions();
+}
+
+// Enums
+enum ActionType {
+    ALL,
+    CLOCKIN,
+    CLOCKOUT;
 }
