@@ -127,7 +127,6 @@ public class Organization implements Serializable {
         // Using the pay period copy constructor, create a full new list of pay periods for the employee
         // After creating a deep copy of each pay period, add it to the arraylist to be returned
         for (PayPeriod period : payperiods) {
-            System.out.println(period.getFormattedDate());
             payperiods_created.add(new PayPeriod(period));
         }
 

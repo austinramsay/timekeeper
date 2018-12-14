@@ -33,6 +33,7 @@ public class OrganizationCreator extends JFrame {
                     // The organization was created, update the local server file
                     FileManager.updateOrganizationManager();
                     JOptionPane.showMessageDialog(null, "Success.");
+                    setVisible(false);
 
                 } else {
 

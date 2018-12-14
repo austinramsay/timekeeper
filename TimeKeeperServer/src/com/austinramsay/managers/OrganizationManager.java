@@ -5,6 +5,7 @@ import com.austinramsay.events.NewOrganizationEvent;
 import com.austinramsay.timekeeper.PayPeriod;
 import com.austinramsay.timekeeper.Recurrence;
 import com.austinramsay.model.Organization;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import javax.swing.*;
 import java.io.Serializable;
@@ -17,25 +18,11 @@ import java.util.Calendar;
  */
 public class OrganizationManager implements Serializable {
 
-    private final ArrayList<Organization> organizations;
-    public OrganizationManager()
-    {
-        this.organizations = new ArrayList<>();
-    }
+    private final ArrayList<Organization> organizations = new ArrayList<>();
     
 
-    public Organization getOrganization(int index)
-    {
-        return organizations.get(index);
-    }
-
-
-    /**
-     * @return The amount of organizations stored
-     */
-    public int getListSize()
-    {
-        return organizations.size();
+    public ArrayList<Organization> getOrganizations() {
+        return organizations;
     }
 
 

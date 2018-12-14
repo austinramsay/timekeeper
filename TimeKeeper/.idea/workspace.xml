@@ -7,168 +7,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f678d62d-bac4-4a3f-8ee6-28dfc8bb5296" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/controller/CorrectionRequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/controller/ReportListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/gui/CorrectionBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/gui/ReportViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/model/EmployeeModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/model/Filters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/CorrectionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/ResponseCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/.idea/libraries/javax_mail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/ContactsMod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/CorrectionRequestViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/CorrectionsMod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/Moderator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/OrganizationCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/CorrectionViewerButtonListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/CorrectionsActionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/CorrectionsFilterChangeEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/CorrectionsFilterListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/CorrectionsListSelectionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/EmployeeChangeEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/EmployeeChangeListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/EmployeeListChangeEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/EmployeeListChangeListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/EmployeeLogListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/ModViewerLink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/NewActionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/NewHoursEventListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/NewOrganizationEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/OrgCreatorButtonListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/OrgCreatorListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/exceptions/PayPeriodOutOfBoundsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/CorrectionViewerButtonBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/CorrectionViewerDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/CorrectionsModButtonBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/CorrectionsModFilterPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/CorrectionsModListPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/ModeratorButtonBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/ModeratorForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/ModeratorList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/ModeratorLogPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/OrgCreatorButtonPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/OrgCreatorGridPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/CorrectionRequestRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/networking/MailWorker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/CorrectionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/ResponseCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/types/ActionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/types/Filter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/types/Marked.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/MainFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/OrganizationListViewer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/StartWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/MainLink.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/OrganizationListButtonListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/OrganizationSelectionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/events/StartWindowListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/OrgsListButtonPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/OrgsListPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/StartPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TimeKeeper_jar/TimeKeeper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TimeKeeper_jar/TimeKeeper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TimeKeeper/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/Alert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/Networker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/RequestWorker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$2$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/TimeKeeper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/timekeeper.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/EmployeeAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/EmployeeList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/EmployeeUpdate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/PayPeriod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/Recurrence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/TimeInterval.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeperobjects/Tracker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/Alert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/gui/Alert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/Networker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/networking/Networker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/RequestWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/networking/RequestWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/TimeKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/gui/TimeKeeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/timekeeper.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/gui/timekeeper.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/EmployeeAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/EmployeeUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/EmployeeUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/PayPeriod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/PayPeriod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Recurrence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/Recurrence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/TimeInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/TimeInterval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/austinramsay/timekeeperobjects/Tracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/Tracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/Recurrence.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TimeKeeper/com/austinramsay/timekeeper/Recurrence.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/TimeKeeperServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/TimeKeeperServer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/artifacts/TimeKeeperServer_jar/TimeKeeperServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/artifacts/TimeKeeperServer_jar/TimeKeeperServer.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/EmployeeAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/EmployeeList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/EmployeeUpdate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/PayPeriod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/Recurrence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/TimeInterval.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperobjects/Tracker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ActionPrompt$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ActionPrompt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ActionType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ActionsBoxRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ActionsListRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Authenticator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeChangeEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeChangeListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeListChangeEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeListChangeListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeListRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeLogListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeLogPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeLogPanel$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/EmployeeLogPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/FileManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/HoursListRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/HoursPrompt$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/HoursPrompt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Moderator$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Moderator$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Moderator$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Moderator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ModeratorButtonBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ModeratorForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ModeratorList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Networker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/NewActionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/NewHoursEventListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/Organization.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/OrganizationManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/PayPeriodsListRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/RequestWorker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/ServerLostException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/TimeKeeperServer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/TimeKeeperServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/TimeManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/timekeeperserver/TimeRenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/EmployeeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/EmployeeAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/EmployeeUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/EmployeeUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/PayPeriod.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/PayPeriod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/Recurrence.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/Recurrence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/TimeInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/TimeInterval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperobjects/Tracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/austinramsay/timekeeper/Tracker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/ActionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/ActionPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/ActionsBoxRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/ActionsBoxRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/ActionsListRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/ActionsListRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/networking/Authenticator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/EmployeeListRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/EmployeeListRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/HoursListRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/HoursListRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/HoursPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/gui/HoursPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/Moderator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/Networker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/networking/Networker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/Organization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/OrganizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/OrganizationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/PayPeriodsListRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/PayPeriodsListRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/RequestWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/networking/RequestWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/TimeKeeperServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/TimeKeeperServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/TimeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/TimeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeperserver/TimeRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/timekeeper/TimeRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/controller/TimeKeeperServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/controller/TimeKeeperServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/controller/TimeKeeperServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/controller/TimeKeeperServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/managers/OrganizationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/managers/OrganizationManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/managers/TimeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/managers/TimeManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/out/production/TimeKeeperServer/com/austinramsay/networking/Authenticator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/OrganizationCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/OrganizationCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/TimeKeeperServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/controller/TimeKeeperServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/OrganizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/OrganizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/TimeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/managers/TimeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/model/Organization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TimeKeeperServer/src/com/austinramsay/networking/Authenticator.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -239,7 +103,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeper/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
+            <state relative-caret-position="464">
               <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -255,14 +119,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeper/Recurrence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="e#247#248#0" expanded="true" />
-                <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#329#330#0" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="580">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -431,8 +289,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -501,17 +359,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="43" width="3840" height="1987" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46756282" visible="true" weight="0.17217484" />
-      <window_info id="Structure" order="1" sideWeight="0.53243715" side_tool="true" visible="true" weight="0.17217484" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.46639392" visible="true" weight="0.17590618" />
+      <window_info id="Structure" order="1" sideWeight="0.53360605" side_tool="true" visible="true" weight="0.17590618" />
       <window_info id="Designer" order="2" />
       <window_info id="Learn" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32967034" />
-      <window_info anchor="bottom" x="2233" y="733" width="1347" height="945" id="Run" order="2" type="FLOATING" weight="0.32967034" />
+      <window_info anchor="bottom" x="2233" y="709" width="1347" height="945" id="Run" order="2" type="FLOATING" weight="0.32967034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.399653" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -709,6 +566,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeper/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1597#1598#0" expanded="true" />
+            <element signature="e#1645#1646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/controller/CorrectionRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -733,30 +604,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeper/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
-            <element signature="e#1022#1023#0" expanded="true" />
-            <element signature="e#1597#1598#0" expanded="true" />
-            <element signature="e#1645#1646#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/austinramsay/timekeeper/Recurrence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="580">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>

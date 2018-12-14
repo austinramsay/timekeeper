@@ -1,7 +1,10 @@
 package com.austinramsay.managers;
 
+import com.austinramsay.controller.TimeKeeperServer;
 import com.austinramsay.timekeeper.PayPeriod;
 import com.austinramsay.timekeeper.Recurrence;
+import com.austinramsay.timekeeper.Tracker;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -241,5 +244,25 @@ public class TimeManager {
         } // End while 'building' loop
 
         return payPeriods;
+    }
+
+
+    /**
+     * Get the tracker of an employee.
+     * @param employee_id the unique ID number of the employee
+     */
+    public static Tracker getTracker(int employee_id) {
+
+        // Attempt to find an existing tracker for this employee
+        for (Tracker tracker : TimeKeeperServer.trackers) {
+            if (tracker.getEmployeeID() == employee_id)
+                return tracker;
+        }
+
+        // Tracker not available for this employee, let's create one, add it to the list, and return it to be used
+        Tracker new_tracker = new Tracker(employee_id);
+        TimeKeeperServer.trackers.add(new_tracker);
+
+        return new_tracker;
     }
 }
